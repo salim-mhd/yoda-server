@@ -1,13 +1,11 @@
 const app = require("../../app");
 const User = require("../../modal/userModal/userSchema")
-
+const jwt = require('jsonwebtoken')
 
 //storing the data from signup form
 const register = async (req, res) => {
     try {
-        console.log(req.body, 'reqqqqqqqqqqqqqqqqqqqqqqqq');
         let user = await User.findOne({email:req.body.email})
-        console.log(user,'userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
         if (!user) {
             try {
               const user = await new User({
@@ -18,14 +16,16 @@ const register = async (req, res) => {
                 status:"unblock"
               })
               await user.save().then(() => {
-                res.status(200).json({ res: user })
+                const token = jwt.sign({ email: admin.adminEmail }, process.env.USER_JWTSECRET_KEY)
+                res.status(200).json({ res: user , token:token })
               })
       
             } catch (error) {
               console.log(error.message);
             }
         } else {
-          res.status(200).json({ res: user , alredyUser:true })
+          const token = jwt.sign({ email: admin.adminEmail }, process.env.USER_JWTSECRET_KEY)
+          res.status(200).json({ res: user , alredyUser:true , token:token })
         }
       } catch (error) {
         console.log(error,'tryyyyyyyyyyyeroorrrrrrrrrrrrrrrrrrrrrr');

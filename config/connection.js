@@ -1,6 +1,6 @@
 const mongoose= require('mongoose')
 const connectdb= async()=>{
-    mongoose.connect('mongodb://localhost:27017/yodu',{
+    mongoose.connect(process.env.MONGODB_URL,{
         useNewUrlParser:true,
         },(err,data)=>{    
          if(err){

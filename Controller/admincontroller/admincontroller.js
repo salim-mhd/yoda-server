@@ -1,6 +1,5 @@
 const app = require('../../app');
 const jwt = require("jsonwebtoken")
-// require('dotenv').config() 
 const User = require('../../modal/userModal/userSchema')
 
 
@@ -14,8 +13,7 @@ const postadminlogin = async (req, res) => {
         let { email, password } = req.body
 
         if (email == admin.adminEmail && password == admin.adminPassword) {
-            const token = jwt.sign({ email: admin.adminEmail }, 'admin')
-            console.log(token);
+            const token = jwt.sign({ email: admin.adminEmail }, process.env.ADMIN_JWTSECRET_KEY)
             if (res.status(201)) {
                 return res.json({ state: "ok", data: token, admin: true })
             } else {
