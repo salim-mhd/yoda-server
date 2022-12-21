@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { postadminlogin , getUserDetails , userStatusChange , userDelete , deleteAllUserDetails } = require('../Controller/admincontroller/admincontroller')
+const { postadminlogin , getUserDetails , userStatusChange , userDelete , deleteAllUserDetails, home } = require('../Controller/admincontroller/admincontroller')
+
+router.get('/', home)
+
 
 /* Post users Details. */
 router.post('/adiminlogin', postadminlogin);
