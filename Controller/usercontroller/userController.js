@@ -12,8 +12,7 @@ const register = async (req, res) => {
                 firstname: req.body.firstName,
                 lastname:req.body.lastName,
                 email: req.body.email,
-                createdat: new Date().toDateString(),
-                status:"unblock"
+                block:true
               })
               await user.save().then(() => {
                 const token = jwt.sign({ email: user.email }, process.env.USER_JWTSECRET_KEY)
