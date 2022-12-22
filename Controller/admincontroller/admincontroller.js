@@ -48,7 +48,7 @@ const getUserDetails = async (req, res) => {
 const userStatusChange = async (req, res) => {
     try {
         let userDetails = await User.findOne({ _id: req.body.userId })
-        if (userDetails.status === 'block') {
+        if (userDetails.block) {
             await User.findByIdAndUpdate(req.body.userId, { status: false })
         } else {
             await User.findByIdAndUpdate(req.body.userId, { status: true })
