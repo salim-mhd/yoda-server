@@ -8,12 +8,6 @@ const admin = {
     adminPassword: 12345678
 }
 
-
-const home = (req, res) => {
-    res.json({"msg":"hello"})
-}
-
-
 const postadminlogin = async (req, res) => {
     try {
         let { email, password } = req.body
@@ -83,4 +77,4 @@ const deleteAllUserDetails = async (req, res) => {
 }
 
 
-module.exports = { postadminlogin, getUserDetails, userStatusChange, userDelete , deleteAllUserDetails,home }
+module.exports = { postadminlogin, getUserDetails, userStatusChange, userDelete , deleteAllUserDetails}

@@ -23,8 +23,12 @@ const register = async (req, res) => {
               console.log(error.message);
             }
         } else {
-          const token = jwt.sign({ email: user.email }, process.env.USER_JWTSECRET_KEY)
+          if(user.block){
+            res.json({userBlock:true})
+          }else{
+            const token = jwt.sign({ email: user.email }, process.env.USER_JWTSECRET_KEY)
           res.status(200).json({ res: user , alredyUser:true , token:token })
+          }
         }
       } catch (error) {
         console.log(error,'tryyyyyyyyyyyeroorrrrrrrrrrrrrrrrrrrrrr');
