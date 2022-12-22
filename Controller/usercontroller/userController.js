@@ -16,7 +16,7 @@ const register = async (req, res) => {
                 status:"unblock"
               })
               await user.save().then(() => {
-                const token = jwt.sign({ email: admin.adminEmail }, process.env.USER_JWTSECRET_KEY)
+                const token = jwt.sign({ email: user.email }, process.env.USER_JWTSECRET_KEY)
                 res.status(200).json({ res: user , token:token })
               })
       
@@ -24,7 +24,7 @@ const register = async (req, res) => {
               console.log(error.message);
             }
         } else {
-          const token = jwt.sign({ email: admin.adminEmail }, process.env.USER_JWTSECRET_KEY)
+          const token = jwt.sign({ email: user.email }, process.env.USER_JWTSECRET_KEY)
           res.status(200).json({ res: user , alredyUser:true , token:token })
         }
       } catch (error) {
