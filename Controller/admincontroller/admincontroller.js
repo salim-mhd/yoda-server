@@ -31,7 +31,7 @@ const postadminlogin = async (req, res) => {
 
 const getUserDetails = async (req, res) => {
     try {
-        const allUserDetails = await User.find()
+        const allUserDetails = await User.find().sort({createdAt:-1})
         return res.json({ state: "ok", users: allUserDetails })
 
     } catch (error) {
