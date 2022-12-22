@@ -56,8 +56,7 @@ const userStatusChange = async (req, res) => {
 
 const userDelete = async (req, res) => {
     try {
-        console.log(req.body.userId, 'userDeleteuserDeleteuserDelete');
-        await User.deleteOne({_id:req.body.userId})
+        await User.deleteOne({ _id: req.body.userId })
         return res.json({ state: "ok" })
 
     } catch (error) {
@@ -67,7 +66,6 @@ const userDelete = async (req, res) => {
 
 const deleteAllUserDetails = async (req, res) => {
     try {
-        console.log('userDeleteuserDeleteuserDeleteallllllllllllllllll');
         await User.deleteMany({})
         return res.json({ state: "ok" })
 
@@ -77,4 +75,4 @@ const deleteAllUserDetails = async (req, res) => {
 }
 
 
-module.exports = { postadminlogin, getUserDetails, userStatusChange, userDelete , deleteAllUserDetails}
+module.exports = { postadminlogin, getUserDetails, userStatusChange, userDelete, deleteAllUserDetails }
