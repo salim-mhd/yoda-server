@@ -31,7 +31,7 @@ const register = async (req, res) => {
           }
         }
       } catch (error) {
-        console.log(error,'tryyyyyyyyyyyeroorrrrrrrrrrrrrrrrrrrrrr');
+        console.log(error.message);
       }
 
 }
