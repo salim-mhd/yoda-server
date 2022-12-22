@@ -49,9 +49,9 @@ const userStatusChange = async (req, res) => {
     try {
         let userDetails = await User.findOne({ _id: req.body.userId })
         if (userDetails.block) {
-            await User.findByIdAndUpdate(req.body.userId, { status: false })
+            await User.findByIdAndUpdate(req.body.userId, { block: false })
         } else {
-            await User.findByIdAndUpdate(req.body.userId, { status: true })
+            await User.findByIdAndUpdate(req.body.userId, { block: true })
         }
         return res.json({ state: "ok" })
 
